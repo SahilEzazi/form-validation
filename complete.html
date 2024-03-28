@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form id="myForm">
+        <center>
+            <h2>Registration Form</h2>        <label for="name">Name:</label><br>
+     <input type="" id="name" name="name"><br>
+     <label for="">Email:</label>
+     <br><input
+             type="email" id="email" name="email"><br>
+            <label for="number">Phone Number:</label><br>
+            <input type="tel" id="number" name="number"><br>
+            <label for="pass">Password:</label><br>
+            <input type="password" id="pass" name="pass"><br>
+            <label for="conpass">Confirm Password:</label><br>
+            <input type="password" id="conpass" name="conpass"><br>
+            <input type="submit" value="Submit">
+        </center>
+    </form>
+    
+    <script>
+        const form = document.getElementById("myForm");
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const number = document.getElementById("number");
+        const password = document.getElementById("pass");
+        const confirmpassword = document.getElementById("conpass");
+        const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+        const regexEmail = /@/;
+    
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+    
+            if (!name.value || !email.value || !number.value || !password.value || !confirmpassword.value) {
+                alert("All fields are mandatory");
+                return;
+            }
+    
+            if (!regexEmail.test(email.value)) {
+                alert("Invalid email format");
+                return;
+            }
+    
+            if (!regex.test(password.value)) {
+                alert("Password must be at least 8 characters long and contain at least one number, one uppercase and one lowercase letter.");
+                return;
+            }
+    
+            if (password.value !== confirmpassword.value) {
+                alert("Passwords do not match");
+                return;
+            }
+    
+            // If all validations pass, you can submit the form data to the server here
+            console.log("Form submitted successfully");
+            alert("form submitted successfully")
+        });
+    </script>
+    
+</body>
+</html>
